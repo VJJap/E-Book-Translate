@@ -26,7 +26,8 @@ export default function UploadPage({ onFileUploaded }) {
       const formData = new FormData();
       formData.append("pdf", file);
 
-      const response = await axios.post("/api/upload", formData, {
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+      const response = await axios.post(`${API_BASE_URL}/api/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -77,11 +78,10 @@ export default function UploadPage({ onFileUploaded }) {
         </div>
 
         <div
-          className={`upload-zone border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all ${
-            isDragOver
+          className={`upload-zone border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all ${isDragOver
               ? "border-indigo-500 bg-indigo-500/10"
               : "border-slate-600 bg-slate-800/50 hover:border-indigo-500 hover:bg-indigo-500/5"
-          }`}
+            }`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -103,9 +103,8 @@ export default function UploadPage({ onFileUploaded }) {
           ) : (
             <div className="flex flex-col items-center gap-4">
               <div
-                className={`p-4 rounded-full transition-colors ${
-                  isDragOver ? "bg-indigo-500/20" : "bg-slate-700"
-                }`}
+                className={`p-4 rounded-full transition-colors ${isDragOver ? "bg-indigo-500/20" : "bg-slate-700"
+                  }`}
               >
                 <Upload
                   size={40}
