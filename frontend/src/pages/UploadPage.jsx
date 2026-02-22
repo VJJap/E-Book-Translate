@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Upload, BookOpen, FileText, AlertCircle, Loader2 } from "lucide-react";
 import axios from "axios";
+import '@fontsource/nunito'
 
 export default function UploadPage({ onFileUploaded }) {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -63,7 +64,7 @@ export default function UploadPage({ onFileUploaded }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ fontFamily: "'Nunito', serif" }}>
       <div className="w-full max-w-2xl">
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -71,7 +72,7 @@ export default function UploadPage({ onFileUploaded }) {
               <BookOpen size={32} className="text-white" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">E-Book Translate</h1>
+          <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: "'Nunito', serif" }}>Evertin Smart Translate</h1>
           <p className="text-slate-400 text-lg">
             อัพโหลด PDF แล้วแปลภาษาได้ทันที ด้วยการลากหรือดับเบิ้ลคลิกที่ข้อความ
           </p>
@@ -79,8 +80,8 @@ export default function UploadPage({ onFileUploaded }) {
 
         <div
           className={`upload-zone border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all ${isDragOver
-              ? "border-indigo-500 bg-indigo-500/10"
-              : "border-slate-600 bg-slate-800/50 hover:border-indigo-500 hover:bg-indigo-500/5"
+            ? "border-indigo-500 bg-indigo-500/10"
+            : "border-slate-600 bg-slate-800/50 hover:border-indigo-500 hover:bg-indigo-500/5"
             }`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}

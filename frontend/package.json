@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/nunito": "^5.2.7",
     "axios": "^1.6.2",
     "lucide-react": "^0.309.0",
     "pdfjs-dist": "^4.0.379",
