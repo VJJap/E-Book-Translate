@@ -72,7 +72,7 @@ export default function UploadPage({ onFileUploaded }) {
               <BookOpen size={32} className="text-white" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: "'Nunito', serif" }}>Evertin Smart Translate</h1>
+          <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: "'Nunito', serif" }}>Everytin Smart Translate</h1>
           <p className="text-slate-400 text-lg">
             อัพโหลด PDF แล้วแปลภาษาได้ทันที ด้วยการลากหรือดับเบิ้ลคลิกที่ข้อความ
           </p>
