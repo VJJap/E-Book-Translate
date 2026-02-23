@@ -4,8 +4,8 @@
   "description": "Backend for E-Book Translation App",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "tsx server.ts",
+    "dev": "nodemon --exec tsx server.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,6 +17,14 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^25.3.0",
+    "@types/pdf-parse": "^1.1.5",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.0.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
