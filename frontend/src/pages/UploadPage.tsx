@@ -78,9 +78,7 @@ export default function UploadPage({ onFileUploaded }: UploadPageProps) {
                         </div>
                     </div>
                     <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: "'Nunito', serif" }}>Everytin Smart Translate</h1>
-                    <p className="text-slate-400 text-lg">
-                        อัพโหลด PDF แล้วแปลภาษาได้ทันที ด้วยการลากหรือดับเบิ้ลคลิกที่ข้อความ
-                    </p>
+    
                 </div>
 
                 <div

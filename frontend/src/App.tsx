@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UploadPage from "./pages/UploadPage";
 import ViewerPage from "./pages/ViewerPage";
+import Home from "./pages/Home";
 
 // Define the shape of file info based on expectations
 export interface FileInfo {
@@ -11,7 +12,12 @@ export interface FileInfo {
 }
 
 export default function App() {
+    const [isStarted, setIsStarted] = useState(false);
     const [uploadedFile, setUploadedFile] = useState<FileInfo | null>(null);
+
+    const handleStart = () => {
+        setIsStarted(true);
+    }
 
     const handleFileUploaded = (fileInfo: FileInfo) => {
         setUploadedFile(fileInfo);
@@ -23,10 +29,15 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-slate-900">
-            {!uploadedFile ? (
-                <UploadPage onFileUploaded={handleFileUploaded} />
+            {!isStarted ? (
+                <Home onStart={handleStart} />
             ) : (
-                <ViewerPage file={uploadedFile} onBack={handleBack} />
+
+                !uploadedFile ? (
+                    <UploadPage onFileUploaded={handleFileUploaded} />
+                ) : (
+                    <ViewerPage file={uploadedFile} onBack={handleBack} />
+                )
             )}
         </div>
     );
