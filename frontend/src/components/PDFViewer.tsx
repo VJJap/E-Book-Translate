@@ -120,6 +120,24 @@ export default function PDFViewer({ file, onTextSelected }: PDFViewerProps) {
         renderPage();
     }, [renderPage]);
 
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "ArrowLeft" && currentPage > 1) {
+                setCurrentPage((page) => page - 1);
+            }
+
+            if (event.key === "ArrowRight" && currentPage < totalPages) {
+                setCurrentPage((page) => page + 1);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [currentPage, totalPages]);
+
     const handleTextSelection = useCallback(() => {
         const selection = window.getSelection();
         if (!selection || selection.isCollapsed) return;
@@ -224,13 +242,57 @@ export default function PDFViewer({ file, onTextSelected }: PDFViewerProps) {
             </div>
 
             <div className="py-8 px-4">
-                <div
-                    className="pdf-canvas-wrapper relative select-text"
-                    onMouseUp={handleTextSelection}
-                    onDoubleClick={handleTextSelection}
-                >
-                    <canvas ref={canvasRef} className="rounded-lg" />
-                    <div ref={textLayerRef} className="text-layer" />
+                <div className="relative">
+                    <button
+                        type="button"
+                        onClick={goToPrevPage}
+                        disabled={currentPage <= 1}
+                        aria-label="Previous page"
+                        className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-slate-600 bg-slate-800/90 p-3 text-slate-200 shadow-lg backdrop-blur transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                        <ChevronLeft size={22} />
+                    </button>
+
+                    <div
+                        className="pdf-canvas-wrapper relative select-text"
+                        onMouseUp={handleTextSelection}
+                        onDoubleClick={handleTextSelection}
+                    >
+                        <canvas ref={canvasRef} className="rounded-lg" />
+                        <div ref={textLayerRef} className="text-layer" />
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={goToNextPage}
+                        disabled={currentPage >= totalPages}
+                        aria-label="Next page"
+                        className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-slate-600 bg-slate-800/90 p-3 text-slate-200 shadow-lg backdrop-blur transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                        <ChevronRight size={22} />
+                    </button>
+                </div>
+
+                <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                    <button
+                        type="button"
+                        onClick={goToPrevPage}
+                        disabled={currentPage <= 1}
+                        className="rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm text-slate-200 transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                        Previous Page
+                    </button>
+                    <span className="text-center text-sm text-slate-400">
+                        Use the navigation buttons or Left/Right arrow keys to change pages
+                    </span>
+                    <button
+                        type="button"
+                        onClick={goToNextPage}
+                        disabled={currentPage >= totalPages}
+                        className="rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm text-slate-200 transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                        Next Page
+                    </button>
                 </div>
             </div>
         </div>
