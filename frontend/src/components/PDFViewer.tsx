@@ -200,7 +200,7 @@ export default function PDFViewer({ file, onTextSelected }: PDFViewerProps) {
                         disabled={currentPage <= 1}
                         className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                     >
-                        <ChevronLeft size={20} />
+                        <ChevronLeft size={10} />
                     </button>
                     <span className="text-slate-300 text-sm min-w-[80px] text-center">
                         {currentPage} / {totalPages}
@@ -210,7 +210,7 @@ export default function PDFViewer({ file, onTextSelected }: PDFViewerProps) {
                         disabled={currentPage >= totalPages}
                         className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                     >
-                        <ChevronRight size={20} />
+                        <ChevronRight size={10} />
                     </button>
                 </div>
 
@@ -273,27 +273,6 @@ export default function PDFViewer({ file, onTextSelected }: PDFViewerProps) {
                     </button>
                 </div>
 
-                <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                    <button
-                        type="button"
-                        onClick={goToPrevPage}
-                        disabled={currentPage <= 1}
-                        className="rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm text-slate-200 transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-30"
-                    >
-                        Previous Page
-                    </button>
-                    <span className="text-center text-sm text-slate-400">
-                        Use the navigation buttons or Left/Right arrow keys to change pages
-                    </span>
-                    <button
-                        type="button"
-                        onClick={goToNextPage}
-                        disabled={currentPage >= totalPages}
-                        className="rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm text-slate-200 transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-30"
-                    >
-                        Next Page
-                    </button>
-                </div>
             </div>
         </div>
     );
